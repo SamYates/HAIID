@@ -28,4 +28,4 @@ def recipe_search(query):
     data = response.json()
     img = data['results'][0]['image']
     #return "hi"
-    return "<h1>" + str(image) + "</h1>"
+    return "<h1>" + str(img) + "</h1>"
