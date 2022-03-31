@@ -26,5 +26,6 @@ def get_meal_plan(dietstring):
 def recipe_search(query):
     response = api.search_recipes_complex(query)
     data = response.json()
+    img = data['results'][0]['image']
     return "hi"
-    return send_file(data['results'][0]['image'], mimetype='image/gif')
+    return send_file(img, mimetype='image/gif')
