@@ -24,7 +24,7 @@ def get_meal_plan(dietstring):
 
 @app.route("/recipe_search_str=<string:query>/")
 def recipe_search(query):
-    response = api.search_recipes_complex("query")
+    response = api.search_recipes_complex(query)
     data = response.json()
     return "hi"
     return send_file(data['results'][0]['image'], mimetype='image/gif')
