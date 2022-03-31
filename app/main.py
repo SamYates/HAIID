@@ -12,7 +12,7 @@ api = spoonacular.API(API_KEY)
 def home_view():
     return "<h1>HAIID peep PEEPS!</h1>"
 
-@app.route("/diet=<string:dietstring>/")
+@app.route("/generate_meal_plan_from_diet=<string:dietstring>/")
 def get_meal_plan(dietstring):
     response = api.generate_meal_plan(diet=dietstring)
     data = response.json()
@@ -20,4 +20,9 @@ def get_meal_plan(dietstring):
     day_meals = [m for m in meals if m['day']==1]
 
     return "<h1>" + str(day_meals) + "</h1>"
-    
+
+@app.route("/recipe_search_str=<string:query>/")
+def recipe_search(query):
+    response = api.search_recipes_complex("query")
+    data = response.json()
+    return data['results'][0]['image']
