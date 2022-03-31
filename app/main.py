@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import send_file
 import spoonacular
 
 API_KEY = "a80ce6a267f14f4f86a64efe027f6495"
@@ -25,4 +26,4 @@ def get_meal_plan(dietstring):
 def recipe_search(query):
     response = api.search_recipes_complex("query")
     data = response.json()
-    return data['results'][0]['image']
+    return send_file(data['results'][0]['image'], mimetype='image/gif')
