@@ -9,7 +9,7 @@ api = spoonacular.API(API_KEY)
 
 @app.route("/")
 def home_view():
-    return "<h1>HAIID peep & STUFF!</h1>"
+    return "<h1>HAIID peep & STUFF! \n lets see</h1>"
 
 @app.route("/generate_meal_plan_from_diet=<string:dietstring>/")
 def get_meal_plan(dietstring):
