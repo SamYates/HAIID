@@ -29,3 +29,8 @@ def recipe_search(query):
     img = data['results'][0]['image']
     #return "hi"
     return "<h1>" + str(img) + "</h1>"
+
+
+@app.route("/get_growth_stage/<string:image>/")
+def nn(image):
+    return "RIPE TOMATO"
