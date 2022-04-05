@@ -55,6 +55,7 @@ def get_recipes():
                     rec_details = api.get_recipe_information(rec['id'])
                     if diet in rec_details['diets']:
                         valid_recipes.append(rec)
+            return "Hi"
                 
 
     
