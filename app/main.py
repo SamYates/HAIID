@@ -37,10 +37,24 @@ def nn(image):
 @app.route("/get_recipes")
 def get_recipes():
     #inputs
-    diet = request.args.get('diet', default='None', type= str)
+    diet = request.args.get('diet', default='None', type = str)
     user_ingredients = request.args.get('userIngredients',default='', type=str)
     allowed_missed_ingredients = request.args.get('userIngredients',default='', type=int)
     num_recipes_wanted = request.args.get('recipesWanted',default='', type=int)
 
     
-    return diet + user_ingredients
+    valid_recipes = []
+    while len(valid_recipes) < num_recipes_wanted:
+        rec_from_ingr = api.search_recipes_by_ingredients(user_ingredients)
+        for rec in rec_from_ingr:
+            if rec['missedIngredientCount'] <= allowed_missed_ingredients:
+                if diet=='None':
+                    valid_recipes.append(rec)
+                else:
+                    rec_details = api.get_recipe_information(rec['id'])
+                    if diet in rec_details['diets']:
+                        valid_recipes.append(rec)
+                
+
+    
+    return valid_recipes
