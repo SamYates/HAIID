@@ -42,7 +42,7 @@ def get_recipes():
     allowed_missed_ingredients = request.args.get('allowMissed',default=2, type=int)
     num_recipes_wanted = request.args.get('recipesWanted',default=5, type=int)
 
-    return diet + user_ingredients+str(allowed_missed_ingredients)+str(num_recipes_wanted)
+    #return diet + user_ingredients+str(allowed_missed_ingredients)+str(num_recipes_wanted)
 
     valid_recipes = []
     while len(valid_recipes) < num_recipes_wanted:
