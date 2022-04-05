@@ -45,17 +45,20 @@ def get_recipes():
     #return diet + user_ingredients+str(allowed_missed_ingredients)+str(num_recipes_wanted)
 
     valid_recipes = []
-    while len(valid_recipes) < num_recipes_wanted:
-        rec_from_ingr = api.search_recipes_by_ingredients(user_ingredients).json()
-        for rec in rec_from_ingr:
-            if rec['missedIngredientCount'] <= allowed_missed_ingredients:
-                if diet=='None':
-                    valid_recipes.append(rec)
-                else:
-                    rec_details = api.get_recipe_information(rec['id'])
-                    if diet in rec_details['diets']:
+    try:
+        while len(valid_recipes) < num_recipes_wanted:
+            rec_from_ingr = api.search_recipes_by_ingredients(user_ingredients).json()
+            for rec in rec_from_ingr:
+                if rec['missedIngredientCount'] <= allowed_missed_ingredients:
+                    if diet=='None':
                         valid_recipes.append(rec)
-                    return "Hi"
+                    else:
+                        rec_details = api.get_recipe_information(rec['id'])
+                        if diet in rec_details['diets']:
+                            valid_recipes.append(rec)
+    except Exception as e:
+        return e
+                    
                 
 
     
