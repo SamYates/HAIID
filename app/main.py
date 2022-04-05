@@ -39,10 +39,11 @@ def get_recipes():
     #inputs
     diet = request.args.get('diet', default='None', type = str)
     user_ingredients = request.args.get('userIngredients',default='', type=str)
-    allowed_missed_ingredients = request.args.get('allow_missed',default='', type=int)
+    allowed_missed_ingredients = request.args.get('allowMissed',default='', type=int)
     num_recipes_wanted = request.args.get('recipesWanted',default='', type=int)
 
-    
+    return diet + user_ingredients+str(allowed_missed_ingredients)+str(num_recipes_wanted)
+
     valid_recipes = []
     while len(valid_recipes) < num_recipes_wanted:
         rec_from_ingr = api.search_recipes_by_ingredients(user_ingredients)
