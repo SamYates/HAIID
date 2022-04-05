@@ -39,7 +39,7 @@ def get_recipes():
     #inputs
     diet = request.args.get('diet', default='None', type = str)
     user_ingredients = request.args.get('userIngredients',default='', type=str)
-    allowed_missed_ingredients = request.args.get('userIngredients',default='', type=int)
+    allowed_missed_ingredients = request.args.get('allow_missed',default='', type=int)
     num_recipes_wanted = request.args.get('recipesWanted',default='', type=int)
 
     
