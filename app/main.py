@@ -44,6 +44,7 @@ def get_recipes():
     user_ingredients = request.args.get('userIngredients',default='flour,egg,milk,banana,honey,golden syrup,butter', type=str)
     allowed_missed_ingredients = request.args.get('allowMissed',default=2, type=int)
     num_recipes_wanted = request.args.get('recipesWanted',default=5, type=int)
+    #ADD TEST VALUES SO DONT CALL API!!!!!
 
     #return diet + user_ingredients+str(allowed_missed_ingredients)+str(num_recipes_wanted)
 
