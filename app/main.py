@@ -57,7 +57,7 @@ def get_recipes():
                         if diet in rec_details['diets']:
                             valid_recipes.append(rec)
     except Exception as e:
-        return e
+        return "Hi there " + str(e)
                     
                 
 
