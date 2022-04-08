@@ -58,9 +58,8 @@ def recipe_search(query):
 def get_growth_stage():
     new_file = request.files['image']
     file_name = secure_filename(new_file.filename)
-    #new_file.save(
-    return os.path.join(app.config['UPLOAD_FOLDER'], file_name)
-    #return 'lol'
+    new_file.save('upload_images/' + file_name)
+    return 'lol'
 
 
 @app.route("/get_recipes")
