@@ -1,4 +1,6 @@
-from flask import Flask, send_file, request
+from flask import Flask
+from flask import send_file
+from flask import request
 from tensorflow import keras
 import spoonacular
 import cv2
