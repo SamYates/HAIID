@@ -18,6 +18,7 @@ cloudpickle==2.0.0
 colorama==0.4.4
 crypto==1.4.1
 cuda==0.0.1
+cuda-python==11.6.1
 cycler==0.10.0
 DALL-E==0.1
 decorator==4.4.2
