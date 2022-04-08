@@ -12,7 +12,7 @@ API_KEY = "a80ce6a267f14f4f86a64efe027f6495"
 app = Flask(__name__)
 api = spoonacular.API(API_KEY)
 
-classifier = keras.models.load_model('classifierModel')
+classifier = keras.models.load_model('app/classifierModel')
 
 #strawberryModel = keras.models.load_model('strawberryModel')
 #onionModel = keras.models.load_model('onionModel')
