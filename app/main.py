@@ -1,7 +1,8 @@
 from flask import Flask, send_file, request
 from tensorflow import keras
 import spoonacular
-import cv2
+#import cv2
+import opencv-python-headless as cv2
 import numpy as np
 import os
 from werkzeug.utils import secure_filename
