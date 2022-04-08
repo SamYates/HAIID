@@ -6,6 +6,9 @@ import numpy as np
 import os
 from werkzeug.utils import secure_filename
 
+
+#ijrsngkjdfsngkjldsniu;okgnrskn!!!
+
 API_KEY = "a80ce6a267f14f4f86a64efe027f6495"
 
 app = Flask(__name__)
