@@ -4,7 +4,7 @@ import spoonacular
 import cv2
 import numpy as np
 import os
-from tensorflow import keras
+from tensorflow.keras.models import load_model
 from werkzeug.utils import secure_filename
 
 API_KEY = "a80ce6a267f14f4f86a64efe027f6495"
@@ -12,7 +12,7 @@ API_KEY = "a80ce6a267f14f4f86a64efe027f6495"
 app = Flask(__name__)
 api = spoonacular.API(API_KEY)
 
-classifier = keras.models.load_model('./classifierModel')
+classifier = load_model('classifierModel')
 
 #strawberryModel = keras.models.load_model('strawberryModel')
 #onionModel = keras.models.load_model('onionModel')
