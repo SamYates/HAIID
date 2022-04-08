@@ -11,11 +11,8 @@ api = spoonacular.API(API_KEY)
 
 @app.route("/")
 def home_view():
-<<<<<<< HEAD
     return "<h1>HAIID peep & STUFF! \n does this work YET</h1>"
-=======
-    return "<h1>HAIID peep & STUFF! /n does it</h1>"
->>>>>>> heads/heroku/master
+
 
 @app.route("/generate_meal_plan_from_diet=<string:dietstring>/")
 def get_meal_plan(dietstring):
