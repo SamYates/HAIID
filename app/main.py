@@ -7,10 +7,15 @@ import os
 from tensorflow.keras.models import load_model
 from werkzeug.utils import secure_filename
 
+import sys
+
 API_KEY = "a80ce6a267f14f4f86a64efe027f6495"
 
 app = Flask(__name__)
 api = spoonacular.API(API_KEY)
+
+print (os.listir) # python 3
+sys.stdout.flush()
 
 classifier = load_model('classifierModel')
 
