@@ -52,7 +52,7 @@ def recipe_search(query):
 
 @app.route("/get_growth_stage", methods = ['POST'])
 def get_growth_stage():
-    new_file = request.files['image']
+    new_file = request.files['image'].read()
     npimg = np.fromstring(new_file, np.uint8)
     image = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
     image = np.array([cv2.resize(image/255, (224, 224), interpolation = cv2.INTER_AREA)])
