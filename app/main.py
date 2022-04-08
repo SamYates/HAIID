@@ -2,13 +2,9 @@ from flask import Flask, send_file, request
 from tensorflow import keras
 import spoonacular
 import cv2
-#import opencv-python-headless as cv2
 import numpy as np
 import os
 from werkzeug.utils import secure_filename
-
-
-#ijrsngkjdfsngkjldsniu;okgnrskn!!!
 
 API_KEY = "a80ce6a267f14f4f86a64efe027f6495"
 
@@ -135,5 +131,5 @@ def get_recipes():
 
 
 #DEBUG MODE!!
-##if __name__ == '__main__':
-##    app.run(host='0.0.0.0', port=105, debug=True)
+#if __name__ == '__main__':
+#    app.run(host='0.0.0.0', port=105, debug=True)
