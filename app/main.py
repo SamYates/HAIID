@@ -12,6 +12,24 @@ API_KEY = "a80ce6a267f14f4f86a64efe027f6495"
 app = Flask(__name__)
 api = spoonacular.API(API_KEY)
 
+home_dir = os.path.expanduser("~")
+UPLOAD_FOLDER = "/upload_images" #change to host directory
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+classifier = keras.models.load_model('classifierModel')
+
+strawberryModel = keras.models.load_model('strawberryModel')
+onionModel = keras.models.load_model('onionModel')
+carrotModel = keras.models.load_model('carrotModel')
+beetrootModel = keras.models.load_model('beetrootModel')
+cucumberModel = keras.models.load_model('cucumberModel')
+tomatoModel = keras.models.load_model('tomatoModel')
+#potatoModel = keras.models.load_model('potatoModel')
+#pepperModel = keras.models.load_model('pepperModel')
+
+modelArray = [beetrootModel, carrotModel, cucumberModel, onionModel, strawberryModel, tomatoModel] #potatoModel pepperModel
+classNames = ["beetroot", "carrot", "cucumber", "onion", "strawberry", "tomato"] #potato pepper
+
 @app.route("/")
 def home_view():
     return "<h1>HAIID peep & STUFF! \n does this work YET</h1>"
