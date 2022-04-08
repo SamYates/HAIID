@@ -26,9 +26,8 @@ api = spoonacular.API(API_KEY)
 #tomatoModel = keras.models.load_model('tomatoModel')
 #potatoModel = keras.models.load_model('potatoModel')
 #pepperModel = keras.models.load_model('pepperModel')
+#modelArray = [beetrootModel, carrotModel, cucumberModel, onionModel, strawberryModel, tomatoModel] #potatoModel pepperModel
 
-
-modelArray = [beetrootModel, carrotModel, cucumberModel, onionModel, strawberryModel, tomatoModel] #potatoModel pepperModel
 classNames = ["beetroot", "carrot", "cucumber", "onion", "strawberry", "tomato"] #potato pepper
 
 @app.route("/")
