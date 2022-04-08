@@ -1,9 +1,10 @@
-from flask import Flask, send_file, request
-from tensorflow import keras
+from flask import Flask
+from flask import request
 import spoonacular
 import cv2
 import numpy as np
 import os
+from tensorflow import keras
 from werkzeug.utils import secure_filename
 
 API_KEY = "a80ce6a267f14f4f86a64efe027f6495"
@@ -11,22 +12,18 @@ API_KEY = "a80ce6a267f14f4f86a64efe027f6495"
 app = Flask(__name__)
 api = spoonacular.API(API_KEY)
 
-home_dir = os.path.expanduser("~")
-UPLOAD_FOLDER = "/upload_images" #change to host directory
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+classifier = keras.models.load_model(os.getcwd() + '/classifierModel')
 
-classifier = keras.models.load_model('classifierModel')
-
-strawberryModel = keras.models.load_model('strawberryModel')
-onionModel = keras.models.load_model('onionModel')
-carrotModel = keras.models.load_model('carrotModel')
-beetrootModel = keras.models.load_model('beetrootModel')
-cucumberModel = keras.models.load_model('cucumberModel')
-tomatoModel = keras.models.load_model('tomatoModel')
+#strawberryModel = keras.models.load_model('strawberryModel')
+#onionModel = keras.models.load_model('onionModel')
+#carrotModel = keras.models.load_model('carrotModel')
+#beetrootModel = keras.models.load_model('beetrootModel')
+#cucumberModel = keras.models.load_model('cucumberModel')
+#tomatoModel = keras.models.load_model('tomatoModel')
 #potatoModel = keras.models.load_model('potatoModel')
 #pepperModel = keras.models.load_model('pepperModel')
+#modelArray = [beetrootModel, carrotModel, cucumberModel, onionModel, strawberryModel, tomatoModel] #potatoModel pepperModel
 
-modelArray = [beetrootModel, carrotModel, cucumberModel, onionModel, strawberryModel, tomatoModel] #potatoModel pepperModel
 classNames = ["beetroot", "carrot", "cucumber", "onion", "strawberry", "tomato"] #potato pepper
 
 @app.route("/")
@@ -55,35 +52,35 @@ def recipe_search(query):
 
 @app.route("/get_growth_stage", methods = ['POST'])
 def get_growth_stage():
-    new_file = request.files['image']
-    file_name = secure_filename(new_file.filename)
-    new_file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
-    image = np.array([cv2.resize(cv2.imread('upload_images/' + file_name)/255, (224, 224), interpolation = cv2.INTER_AREA)])
+    new_file = request.files['image'].read()
+    npimg = np.fromstring(new_file, np.uint8)
+    image = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
+    image = np.array([cv2.resize(image/255, (224, 224), interpolation = cv2.INTER_AREA)])
     
-    imageClass = np.argmax(classifier.predict(image)[0])
+    #imageClass = np.argmax(classifier.predict(image)[0])
 
-    model = modelArray[imageClass]
+    #model = modelArray[imageClass]
 
-    prediction = model.predict(image)
+    #prediction = model.predict(image)
 
-    if imageClass == 0:
-        progress = (1.5*prediction[0][0] + 4*prediction[0][1] + 7*prediction[0][2])/7
-    elif imageClass == 1:
-        progress = (2*prediction[0][0] + 6.5*prediction[0][1]+ 10*prediction[0][2])/10
-    elif imageClass == 2:
-        progress = (1.5*prediction[0][0] + 4*prediction[0][1] + 7*prediction[0][2] + 9*prediction[0][3])/9
-    elif imageClass == 3:
-        progress = (1.5*prediction[0][0] + 6.5*prediction[0][1] + 11*prediction[0][2])/11
-    elif imageClass == 4:
-        progress = (prediction[0][0] + 2.5*prediction[0][1]+4*prediction[0][2]+6*prediction[0][3])/6
-    elif imageClass == 5:
-        progress = (prediction[0][0] + 3*prediction[0][1] + 6.5*prediction[0][2] + 8*prediction[0][3])/8
+    #if imageClass == 0:
+    #    progress = (1.5*prediction[0][0] + 4*prediction[0][1] + 7*prediction[0][2])/7
+    #elif imageClass == 1:
+    #    progress = (2*prediction[0][0] + 6.5*prediction[0][1]+ 10*prediction[0][2])/10
+    #elif imageClass == 2:
+    #    progress = (1.5*prediction[0][0] + 4*prediction[0][1] + 7*prediction[0][2] + 9*prediction[0][3])/9
+    #elif imageClass == 3:
+    #    progress = (1.5*prediction[0][0] + 6.5*prediction[0][1] + 11*prediction[0][2])/11
+    #elif imageClass == 4:
+    #    progress = (prediction[0][0] + 2.5*prediction[0][1]+4*prediction[0][2]+6*prediction[0][3])/6
+    #elif imageClass == 5:
+    #    progress = (prediction[0][0] + 3*prediction[0][1] + 6.5*prediction[0][2] + 8*prediction[0][3])/8
     #elif imageClaass == 6:
     #    progress = (##*prediction[0][0] + ##*prediction[0][1] + ##*prediction[0][2])/##
     #elif imageClaass == 7:
     #    progress = (##*prediction[0][0] + ##*prediction[0][1] + ##*prediction[0][2])/##
 
-    return str(progress)
+    return 'lol'#str(progress)
 
 
 @app.route("/get_recipes")
