@@ -74,11 +74,11 @@ def get_recipes():
     
     return str(valid_recipes)
 
-@app.route("/generate_meal_plan")
-def get_meal_plan():
-    time_frame = request.args.get('timeFrame', default='None', type = str)
-    diet = request.args.get('diet', default='None', type = str)
-    user_ingredients = request.args.get('userIngredients',default='flour,egg,milk,banana,honey,golden syrup,butter', type=str)
+##@app.route("/generate_meal_plan")
+##def get_meal_plan():
+##    time_frame = request.args.get('timeFrame', default='None', type = str)
+##    diet = request.args.get('diet', default='None', type = str)
+##    user_ingredients = request.args.get('userIngredients',default='flour,egg,milk,banana,honey,golden syrup,butter', type=str)
     
 
 
