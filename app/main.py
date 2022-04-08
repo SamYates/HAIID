@@ -13,8 +13,8 @@ app = Flask(__name__)
 api = spoonacular.API(API_KEY)
 
 #home_dir = os.path.expanduser("~")
-#UPLOAD_FOLDER = "/upload_images" #change to host directory
-#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+UPLOAD_FOLDER = "/upload_images" #change to host directory
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 #classifier = keras.models.load_model('classifierModel')
 
